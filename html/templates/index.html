@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload Test</title>
+</head>
+<body>
+    <h1>File Upload Test</h1>
+    <form action="/update_file_test" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="file">
+        <button type="submit">上传</button>
+    </form>
+    <form action="/update_ByetsIO_test" method="GET" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="text" name="url">
+        <button type="submit">get</button>
+    </form>
+    <form action="/delete_test" method="GET" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="text" name="filepath">
+        <button type="submit">删除</button>
+    </form>
+    <input id="download" type="text" name="filepath">
+    <button type="button" onclick="redirectToWithoutHistory()">下载</button>
+    <br>
+    <form action="/spider_test" method="GET" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="text" name="bvid">
+        <button type="submit">爬取</button>
+    </form>
+    <script>
+        function redirectToWithoutHistory() {
+            window.location.href="/download_test/"+document.getElementById("download").value;
+        }
+    </script>
+</body>
+</html>
