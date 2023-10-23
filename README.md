@@ -36,7 +36,7 @@ Web数据爬取综合分析管理平台是一个使用Python 3.8、Django、Requ
 
 ​	**数据库：** MySQL
 
-​	**数据文件存储：**MinIO，
+​	**数据文件存储：** MinIO，
 
 ​	**缓存：** Redis
 
