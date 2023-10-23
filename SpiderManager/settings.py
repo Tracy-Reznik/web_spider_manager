@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
+# 此文件是本系统的配置脚本，在这里可以配置数据库和minio等
 import os
 from pathlib import Path
 
@@ -86,8 +87,6 @@ DATABASES = {
     }
 }
 
-
-
 # MINIO = {
 #     "SERVER": "192.168.3.3:9000",
 #     "USER": "minioadmin",
@@ -101,7 +100,6 @@ MINIO = {
     "PASS": "password",
     "BUCKET": "spider"
 }
-
 
 CACHES = {
     "default": {
