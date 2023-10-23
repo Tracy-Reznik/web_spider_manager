@@ -13,7 +13,7 @@ bucket_name = MINIO["BUCKET"]
 
 
 # 以django File对象的形式上传文件，用于前端文件上传至minio的情景
-def upload_fileByDjangoFile(file_path, filedata):
+def upload_fileByDjangoFile(file_path:str, filedata:django.core.files.File):
     """
         文件上传函数，将文件以 Django File 对象形式上传到 MinIO 桶。
 
@@ -28,10 +28,13 @@ def upload_fileByDjangoFile(file_path, filedata):
                 状态码 500：表示上传错误
     """
     try:
+        with filedata.open('rb') as file:
+            # 读取文件内容并写入BytesIO对象
+            bytes_io = io.BytesIO(file.read())
         minio_client.put_object(
             bucket_name,
             file_path,
-            filedata,
+            bytes_io,
             length=filedata.size,
             content_type=filedata.content_type
         )
@@ -53,6 +56,7 @@ def upload_fileByBytesIO(file_path: str, filedata: io.BytesIO, contect_type:str)
         Args:
             file_path (str): 文件在 MinIO 中的路径。
             filedata (io.BytesIO): 要上传的文件对象。
+            contect_type (str) 文件mime
 
         Returns:
             dict: 包含上传结果的字典，包括 'code' 和 'message'。状态码可能有 200、500。
@@ -63,7 +67,7 @@ def upload_fileByBytesIO(file_path: str, filedata: io.BytesIO, contect_type:str)
         minio_client.put_object(
             bucket_name,
             object_name=file_path,
-            data=ContentFile(filedata.getvalue()),
+            data=filedata,
             length=len(filedata.getvalue()),
             content_type=contect_type
         )
