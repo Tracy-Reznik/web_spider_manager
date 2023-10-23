@@ -13,7 +13,7 @@ bucket_name = MINIO["BUCKET"]
 
 
 # 以django File对象的形式上传文件，用于前端文件上传至minio的情景
-def upload_fileByDjangoFile(file_path:str, filedata:django.core.files.File):
+def upload_fileByDjangoFile(file_path: str, filedata: django.core.files.File):
     """
         文件上传函数，将文件以 Django File 对象形式上传到 MinIO 桶。
 
@@ -49,7 +49,7 @@ def upload_fileByDjangoFile(file_path:str, filedata:django.core.files.File):
 
 
 # 以BytesIO对象方式上传，适用于将数据处理过程后或者从外部下载后得到的内存文件上传至minio的情景
-def upload_fileByBytesIO(file_path: str, filedata: io.BytesIO, contect_type:str):
+def upload_fileByBytesIO(file_path: str, filedata: io.BytesIO, contect_type: str):
     """
         文件上传函数，将文件以 BytesIO流对象形式上传到 MinIO 桶。
 
