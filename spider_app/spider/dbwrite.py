@@ -108,7 +108,6 @@ def videowrite(info):
     for pagedict in info["pages"]:
         if len(Page.objects.filter(cid=pagedict["cid"])) <= 0:
             videoinfo=video_base.get_video_file(bvid=info["bvid"], cid=pagedict["cid"], aid=info["aid"])
-            print(videoinfo)
             path = videoinfo["file_path"]
             page = Page(
                 video=video,
