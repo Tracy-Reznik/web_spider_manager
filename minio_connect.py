@@ -66,8 +66,8 @@ def upload_fileByBytesIO(file_path: str, filedata: io.BytesIO, contect_type: str
     try:
         minio_client.put_object(
             bucket_name,
-            object_name=file_path,
-            data=filedata,
+            file_path,
+            io.BytesIO(filedata.getvalue()),
             length=len(filedata.getvalue()),
             content_type=contect_type
         )

@@ -107,7 +107,9 @@ def videowrite(info):
         video.uploader = uploader
     for pagedict in info["pages"]:
         if len(Page.objects.filter(cid=pagedict["cid"])) <= 0:
-            path = video_base.get_video_file(bvid=info["bvid"], cid=pagedict["cid"], aid=info["aid"])["file_path"]
+            videoinfo=video_base.get_video_file(bvid=info["bvid"], cid=pagedict["cid"], aid=info["aid"])
+            print(videoinfo)
+            path = videoinfo["file_path"]
             page = Page(
                 video=video,
                 cid=pagedict["cid"],
